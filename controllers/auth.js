@@ -21,7 +21,7 @@ const register = async (req, res) => {
     if (format.test(name)) {
         return res
             .status(400)
-            .json({ msg: "Name cannot have special characters" });
+            .json({ msg: "Name cannot have special characters!" });
     }
     if (password !== rePassword) {
         return res.status(400).json({ msg: "Passwords are not the same!" });
