@@ -46,7 +46,7 @@ const sendMassage = async (req, res) => {
             data.text = text;
         }
         if (!image && !text) {
-            return res.status(400).json({ msg: "text or image is required!" });
+            return res.status(400).json({ msg: "Text or image is required!" });
         }
         // data.seen
         let message = await Message.findOneAndUpdate(

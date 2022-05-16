@@ -64,6 +64,11 @@ app.use("/api/post", requireSignIn, post);
 // @ts-ignore
 app.use("/api/message", requireSignIn, message);
 
+// @ts-ignore
+app.use("/", (req, res) => {
+    res.send("Welcome to my api!");
+});
+
 // io.on("connect", (socket) => {
 //     socket.on("send-message", (message) => {
 //         socket.broadcast.emit("receive-message", message);
