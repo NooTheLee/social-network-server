@@ -146,7 +146,7 @@ const updateUser = async (req, res) => {
             if (password !== rePassword) {
                 return res
                     .status(400)
-                    .json({ msg: "new passwords are not the same!" });
+                    .json({ msg: "New passwords are not the same!" });
             }
             if (password.length < 6) {
                 return res
