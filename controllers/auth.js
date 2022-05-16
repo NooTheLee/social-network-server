@@ -3,7 +3,7 @@ import validator from "validator";
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import randomCatAvatar from "../middleware/randomCatAvatar.js";
-const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+const newFormat = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 const register = async (req, res) => {
     const { name, email, password, rePassword, secret } = req.body;
 
@@ -18,7 +18,7 @@ const register = async (req, res) => {
             });
     }
 
-    if (format.test(name)) {
+    if (newFormat.test(name)) {
         return res
             .status(400)
             .json({ msg: "Name cannot have special characters!" });
@@ -128,7 +128,7 @@ const updateUser = async (req, res) => {
         if (!name) {
             return res.status(400).json({ msg: "Please provider name!" });
         }
-        if (format.test(name)) {
+        if (newFormat.test(name)) {
             return res
                 .status(400)
                 .json({ msg: "Name cannot have special characters" });
