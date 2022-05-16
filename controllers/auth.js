@@ -245,6 +245,7 @@ const addFollower = async (req, res, next) => {
     }
 };
 
+
 const userFollower = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(
@@ -257,7 +258,7 @@ const userFollower = async (req, res) => {
         if (!user) {
             return res.status(400).json({ msg: "No user found!" });
         }
-        res.status(200).json({ msg: "Follow success.", user });
+        res.status(200).json({ msg: "Follow success!.", user });
     } catch (error) {
         return res.status(400).json({ msg: "Something went wrong. Try again!" });
     }
