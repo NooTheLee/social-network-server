@@ -14,9 +14,10 @@ import notFound from "./middleware/not-found.js";
 import auth from "./routes/auth.js";
 import post from "./routes/post.js";
 import message from "./routes/message.js";
+import weather from "./routes/weather.js";
 import requireSignIn from "./middleware/authentication.js";
 import * as http from "http";
-import { Server } from "socket.io";
+import {Server} from "socket.io";
 
 const app = express();
 // @ts-ignore
@@ -43,9 +44,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // @ts-ignore
-app.use(express.json({ limit: "5mb" }));
+app.use(express.json({limit: "5mb"}));
 // @ts-ignore
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
@@ -63,6 +64,8 @@ app.use("/api/auth", auth);
 app.use("/api/post", requireSignIn, post);
 // @ts-ignore
 app.use("/api/message", requireSignIn, message);
+
+app.use("/api/weather", requireSignIn, weather);
 
 // @ts-ignore
 app.use("/", (req, res) => {
@@ -111,3 +114,11 @@ const start = async () => {
 };
 
 start();
+
+// URL = mongodb://socialmedia:Anh123456@socialmedia-shard-00-00.ivl6h.mongodb.net:27017,socialmedia-shard-00-01.ivl6h.mongodb.net:27017,socialmedia-shard-00-02.ivl6h.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-vxl7um-shard-0&authSource=admin&retryWrites=true&w=majority
+// URL_2 = mongodb+srv://socialmedia:Anh123456@socialmedia.ivl6h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// PORT = 8000
+// JWT = a81324hiwdf@!sdkksndc2398423jfdsfwe
+// JWT_LIFETIME = '1d'
+
+// CLIENT_URL_0= https://frost-social-4f5kdlt7u-noothelee.vercel.app

@@ -15,6 +15,7 @@ import {
     totalPosts,
     getPostWithUserId,
     getInformationPost,
+    editComment,
 } from "../controllers/post.js";
 import formidable from "express-formidable";
 import canUpdateOrDelete from "../middleware/canUpdateOrDelete.js";
@@ -45,6 +46,8 @@ router.route("/total-posts").get(totalPosts);
 
 //admin
 router.route("/admin/delete-post/:id").delete(isAdmin, deletePost);
+
+router.route("/comment/edit").patch(editComment);
 
 // get post with userID
 router.route("/getPostWithUser/:userId").get(getPostWithUserId);

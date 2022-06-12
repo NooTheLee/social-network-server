@@ -276,6 +276,21 @@ const getInformationPost = async (req, res) => {
         return res.status(400).json({msg: error});
     }
 };
+const editComment = async (req, res) => {
+    try {
+        const {postId, text, commentId} = req.body;
+        const post = await Post.updateOne(
+            {_id: postId, "comments._id": commentId},
+            {
+                $set: {"comments.$.text": text},
+            }
+        );
+        return res.status(200).json({post});
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({msg: error});
+    }
+};
 const something = async (req, res) => {
     try {
         const postId = req.body;
@@ -300,4 +315,5 @@ export {
     totalPosts,
     getPostWithUserId,
     getInformationPost,
+    editComment,
 };
