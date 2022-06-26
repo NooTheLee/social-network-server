@@ -37,6 +37,29 @@ const postSchema = new mongoose.Schema(
                     type: mongoose.Types.ObjectId,
                     ref: "User",
                 },
+                reply: [
+                    {
+                        text: String,
+                        image: {
+                            url: String,
+                            public_id: String,
+                            default: {
+                                url: "",
+                                public_id: "",
+                            },
+                        },
+                        created: {
+                            type: Date,
+                            default: Date.now,
+                        },
+                        postedBy: {
+                            type: mongoose.Types.ObjectId,
+                            ref: "User",
+                        },
+                        like: [{type: mongoose.Types.ObjectId, ref: "User"}],
+                    },
+                ],
+                like: [{type: mongoose.Types.ObjectId, ref: "User"}],
             },
         ],
     },
