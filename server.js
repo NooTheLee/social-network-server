@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: [process.env.CLIENT_HOST, "https://frost-social.vercel.app"],
+        origin: [process.env.CLIENT_HOST, "https://xxx.app"],
     })
 );
 
@@ -95,7 +95,7 @@ const start = async () => {
             .connect(process.env.URL_2)
             .then(() =>
                 console.log(
-                    "MongoDb connected, connect with cors: http://sxxxxx.com... "
+                    "MongoDb connected, connect with cors: http://xxx.app... "
                 )
             );
 
