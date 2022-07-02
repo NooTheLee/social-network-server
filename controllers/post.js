@@ -121,14 +121,17 @@ const editPost = async (req, res) => {
     try {
         const postId = req.params.id;
         const {content, image} = req.body;
-        const post = await Post.findByIdAndUpdate(postId, {
-            content,
-            image,
-        });
+        const post = await Post.findById(postId)
+            .populate("postedBy", "-password -secret")
+            .populate("comments.postedBy", "-password -secret")
+            .populate("comments.reply.postedBy", "-password -secret");
         if (!post) {
             return res.status(400).json({msg: "No post found!"});
         }
-        return res.status(200).json({msg: "Updated posts."});
+        post.content = content;
+        post.image = image;
+        await post.save();
+        return res.status(200).json({post});
     } catch (error) {
         return res.status(400).json({msg: error});
     }
