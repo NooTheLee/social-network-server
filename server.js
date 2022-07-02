@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: "http://sxxxxx.com",
+        origin: [process.env.CLIENT_HOST, "https://frost-social.vercel.app"],
     })
 );
 
@@ -95,7 +95,7 @@ const start = async () => {
             .connect(process.env.URL_2)
             .then(() =>
                 console.log(
-                    "MongoDb connected, connect with cors: http://sxxxxx.com. "
+                    "MongoDb connected, connect with cors: http://sxxxxx.com... "
                 )
             );
 
@@ -108,11 +108,3 @@ const start = async () => {
 };
 
 start();
-
-// URL = mongodb://socialmedia:Anh123456@socialmedia-shard-00-00.ivl6h.mongodb.net:27017,socialmedia-shard-00-01.ivl6h.mongodb.net:27017,socialmedia-shard-00-02.ivl6h.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-vxl7um-shard-0&authSource=admin&retryWrites=true&w=majority
-// URL_2 = mongodb+srv://socialmedia:Anh123456@socialmedia.ivl6h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-// PORT = 8000
-// JWT = a81324hiwdf@!sdkksndc2398423jfdsfwe
-// JWT_LIFETIME = '1d'
-
-// CLIENT_URL_0= https://frost-social-4f5kdlt7u-noothelee.vercel.app
