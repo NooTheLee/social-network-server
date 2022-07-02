@@ -26,13 +26,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: [
-            process.env.CLIENT_HOST,
-            "http://localhost:3000",
-            "https://frost-social.vercel.app",
-            "https://frost-social-4f5kdlt7u-noothelee.vercel.app",
-            "https://frost-social-git-main-noothelee.vercel.app/",
-        ],
+        origin: "*",
         methods: ["GET", "POST", "PUT", "PATCH"],
         allowedHeaders: ["Content-type"],
     },
@@ -50,11 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: [
-            process.env.CLIENT_HOST,
-            "http://localhost:3000",
-            "https://frost-social.vercel.app",
-        ],
+        origin: "*",
     })
 );
 
