@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: "*",
+        origin: [process.env.CLIENT1, process.env.CLIENT2],
     })
 );
 
