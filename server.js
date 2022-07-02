@@ -26,7 +26,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "http://sxxxxx.com",
         methods: ["GET", "POST", "PUT", "PATCH"],
         allowedHeaders: ["Content-type"],
     },
@@ -95,7 +95,7 @@ const start = async () => {
             .connect(process.env.URL_2)
             .then(() =>
                 console.log(
-                    "MongoDb connected, connect with cors: http://sxxxxx.com "
+                    "MongoDb connected, connect with cors: http://sxxxxx.com. "
                 )
             );
 
