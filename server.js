@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: [process.env.CLIENT1, process.env.CLIENT2],
+        origin: "http://sxxxxx.com",
     })
 );
 
@@ -93,7 +93,11 @@ const start = async () => {
     try {
         await mongoose
             .connect(process.env.URL_2)
-            .then(() => console.log("MongoDb connected"));
+            .then(() =>
+                console.log(
+                    "MongoDb connected, connect with cors: http://sxxxxx.com "
+                )
+            );
 
         server.listen(port, () => {
             console.log("Server is running on port", port);
