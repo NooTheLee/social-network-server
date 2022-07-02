@@ -26,7 +26,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://sxxxxx.com",
+        origin: "*",
         methods: ["GET", "POST", "PUT", "PATCH"],
         allowedHeaders: ["Content-type"],
     },
@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: true}));
 // @ts-ignore
 app.use(
     cors({
-        origin: [process.env.CLIENT_HOST, "https://xxx.app"],
+        origin: "*",
     })
 );
 
