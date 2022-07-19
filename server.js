@@ -62,12 +62,6 @@ app.use("/", (req, res) => {
     res.send("Welcome to my api!");
 });
 
-// io.on("connect", (socket) => {
-//     socket.on("send-message", (message) => {
-//         socket.broadcast.emit("receive-message", message);
-//     });
-// });
-
 io.on("connect", (socket) => {
     socket.on("new-post", (newPost) => {
         console.log("new-post", newPost);

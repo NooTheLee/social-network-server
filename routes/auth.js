@@ -16,14 +16,13 @@ import {
     searchUser,
     getInformationUser,
     allUsers,
-    deleteUserWithAdmin,
     listUserFollower,
 } from "./../controllers/auth.js";
 
 const router = express.Router();
 
 router.route("/").get(async (req, res) => {
-    res.json({ msg: "Auth" });
+    res.json({msg: "Auth"});
 });
 
 router.route("/register").post(register);
@@ -36,9 +35,6 @@ router.route("/update-user").patch(requireSignIn, updateUser);
 
 //admin
 router.route("/current-admin").get(requireSignIn, isAdmin, currentUser);
-router
-    .route("/admin/delete-user/:id")
-    .delete(requireSignIn, isAdmin, deleteUserWithAdmin);
 
 router.route("/user-following/:id").get(requireSignIn, userFollowing);
 router.route("/user-follower/:id").get(requireSignIn, listUserFollower);
@@ -53,6 +49,8 @@ router.route("/all-users").get(requireSignIn, isAdmin, allUsers);
 
 router.route("/:id").get(requireSignIn, getInformationUser);
 
-router.route("/user-unfollow").put(requireSignIn, removeFollower, userUnFollower);
+router
+    .route("/user-unfollow")
+    .put(requireSignIn, removeFollower, userUnFollower);
 
 export default router;
