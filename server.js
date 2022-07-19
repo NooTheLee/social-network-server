@@ -93,11 +93,7 @@ const start = async () => {
     try {
         await mongoose
             .connect(process.env.URL_2)
-            .then(() =>
-                console.log(
-                    "MongoDb connected, connect with cors: http://xxx.app... "
-                )
-            );
+            .then(() => console.log("MongoDb connected"));
 
         server.listen(port, () => {
             console.log("Server is running on port", port);
