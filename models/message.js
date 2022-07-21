@@ -23,10 +23,12 @@ const messageSchema = new mongoose.Schema(
                     type: Date,
                     default: Date.now,
                 },
-                like: {
-                    type: Boolean,
-                    default: false,
-                },
+                like: [
+                    {
+                        type: mongoose.Types.ObjectId,
+                        ref: "User",
+                    },
+                ],
                 sentBy: {
                     type: mongoose.Types.ObjectId,
                     ref: "User",
