@@ -63,14 +63,6 @@ app.use("/", (req, res) => {
 });
 
 io.on("connect", (socket) => {
-    socket.on("new-post", (newPost) => {
-        console.log("new-post", newPost);
-        socket.broadcast.emit("new-post", newPost);
-    });
-    socket.on("new-comment", (newComment) => {
-        //console.log("new-post", newPost);
-        socket.broadcast.emit("new-comment", newComment);
-    });
     socket.on("new-message", (newMessage) => {
         socket.broadcast.emit("new-message", newMessage);
     });
