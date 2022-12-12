@@ -1,8 +1,7 @@
-// @ts-ignore
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-// @ts-ignore
+
 import morgan from "morgan";
 import dotenv from "dotenv";
 dotenv.config();
@@ -20,9 +19,8 @@ import * as http from "http";
 import {Server} from "socket.io";
 
 const app = express();
-// @ts-ignore
+
 const server = http.createServer(app);
-//const io = new Server(server);
 
 const io = new Server(server, {
     cors: {
@@ -33,31 +31,27 @@ const io = new Server(server, {
 });
 
 if (process.env.NODE_ENV !== "production") {
-    // @ts-ignore
     app.use(morgan("dev"));
 }
 
-// @ts-ignore
 app.use(express.json({limit: "5mb"}));
-// @ts-ignore
+
 app.use(express.urlencoded({extended: true}));
-// @ts-ignore
+
 app.use(
     cors({
         origin: "*",
     })
 );
 
-// @ts-ignore
 app.use("/api/auth", auth);
-// @ts-ignore
+
 app.use("/api/post", requireSignIn, post);
-// @ts-ignore
+
 app.use("/api/message", requireSignIn, message);
 
 app.use("/api/weather", requireSignIn, weather);
 
-// @ts-ignore
 app.use("/", (req, res) => {
     res.send("Welcome to my api!");
 });
@@ -70,15 +64,16 @@ io.on("connect", (socket) => {
 
 const port = process.env.PORT || 8000;
 
-// @ts-ignore
 app.use(notFound);
-// @ts-ignore
+
 app.use(errorHandlerMiddleware);
+
+mongoose.set("strictQuery", true);
 
 const start = async () => {
     try {
         await mongoose
-            .connect(process.env.URL_2)
+            .connect(process.env.URL_2 || "")
             .then(() => console.log("MongoDb connected"));
 
         server.listen(port, () => {
